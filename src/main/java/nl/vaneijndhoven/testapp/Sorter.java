@@ -6,7 +6,6 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class Sorter {
@@ -20,21 +19,21 @@ public class Sorter {
     }
 
     private static void handle(HttpServerRequest request) {
-        String bla = request.getParam("count");
-        if (bla != null) {
-            int n = Integer.valueOf(bla);
-            int[] values = IntStream.range(0, n).toArray();
-
-            long start = System.currentTimeMillis();
-            bubbleSort(values);
-            long end = System.currentTimeMillis();
-
-            LOG.info("Sorting completed in " + (end - start) + " ms");
-
-            request.response().end("total = [" + StringUtils.join(values, ',') + "]");
-        } else {
+        String countParam = request.getParam("count");
+        if (countParam == null) {
             request.response().end("<html><body><form method=\"GET\"><input type=\"text\" name=\"count\"/><button type=\"submit\">submit</button></form></body></html>");
+            return;
         }
+
+        int[] values = IntStream.range(0, Integer.valueOf(countParam)).toArray();
+
+        long start = System.currentTimeMillis();
+        bubbleSort(values);
+        long end = System.currentTimeMillis();
+
+        LOG.info("Sorting completed in " + (end - start) + " ms");
+
+        request.response().end("total = [" + StringUtils.join(values, ',') + "]");
     }
 
     public static void insertionSort( int [ ] num)
