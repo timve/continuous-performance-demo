@@ -4,9 +4,11 @@ import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.stream.IntStream;
+
+import static java.lang.Integer.valueOf;
+import static org.apache.commons.lang3.StringUtils.join;
 
 public class Sorter {
 
@@ -25,7 +27,7 @@ public class Sorter {
             return;
         }
 
-        int[] values = IntStream.range(0, Integer.valueOf(countParam)).toArray();
+        int[] values = IntStream.range(0, valueOf(countParam)).toArray();
 
         long start = System.currentTimeMillis();
         bubbleSort(values);
@@ -33,7 +35,7 @@ public class Sorter {
 
         LOG.info("Sorting completed in " + (end - start) + " ms");
 
-        request.response().end("total = [" + StringUtils.join(values, ',') + "]");
+        request.response().end("total = [" + join(values, ',') + "]");
     }
 
     public static void insertionSort( int [ ] num)
