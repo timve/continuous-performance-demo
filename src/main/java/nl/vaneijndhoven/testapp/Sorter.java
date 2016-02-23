@@ -2,14 +2,19 @@ package nl.vaneijndhoven.testapp;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerRequest;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 import java.util.Arrays;
 
 public class Sorter {
 
+    private static final Logger LOG = LoggerFactory.getLogger(Sorter.class);
+
     public static void main(String[] args) {
         // Create an HTTP server which simply returns "Hello World!" to each request.
         Vertx.vertx().createHttpServer().requestHandler(Sorter::handle).listen(8080);
+        LOG.info("Webserver started.");
     }
 
     private static void handle(HttpServerRequest request) {
@@ -26,7 +31,7 @@ public class Sorter {
             bubbleSort(values);
             long end = System.currentTimeMillis();
 
-            System.out.println("Sorting completed in " + (end - start) + " ms");
+            LOG.info("Sorting completed in " + (end - start) + " ms");
 
             StringBuilder builder = new StringBuilder();
             Arrays.stream(values).forEach(val -> builder.append(val + ","));
@@ -39,7 +44,7 @@ public class Sorter {
 
     public static void insertionSort( int [ ] num)
     {
-        System.out.println("Using insertion sort for sorting.");
+        LOG.info("Using insertion sort for sorting.");
         int j;                     // the number of items sorted so far
         int key;                // the item to be inserted
         int i;
@@ -57,7 +62,7 @@ public class Sorter {
 
     public static void selectionSort ( int [ ] num )
     {
-        System.out.println("Using selection sort for sorting.");
+        LOG.info("Using selection sort for sorting.");
         int i, j, first, temp;
         for ( i = num.length - 1; i > 0; i -- )
         {
@@ -75,7 +80,7 @@ public class Sorter {
 
     public static void bubbleSort( int [ ] num )
     {
-        System.out.println("Using bubble sort for sorting.");
+        LOG.info("Using bubble sort for sorting.");
         int j;
         boolean flag = true;   // set flag to true to begin first pass
         int temp;   //holding variable
