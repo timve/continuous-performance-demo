@@ -1,6 +1,6 @@
 package nl.vaneijndhoven.testapp;
 
-import io.vertx.core.Vertx;
+import io.vertx.core.*;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
@@ -10,13 +10,18 @@ import java.util.stream.IntStream;
 import static java.lang.Integer.valueOf;
 import static org.apache.commons.lang3.StringUtils.join;
 
-public class Sorter {
+public class SorterApp extends AbstractVerticle {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Sorter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SorterApp.class);
 
     public static void main(String[] args) {
         // Create an HTTP server which simply returns "Hello World!" to each request.
-        Vertx.vertx().createHttpServer().requestHandler(Sorter::handle).listen(8080);
+        Vertx.vertx().deployVerticle(SorterApp.class.getName(), new DeploymentOptions().setWorker(true));
+    }
+
+    @Override
+    public void start() throws Exception {
+        vertx.createHttpServer().requestHandler(SorterApp::handle).listen(8080);
         LOG.info("Webserver started.");
     }
 
