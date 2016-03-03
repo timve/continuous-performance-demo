@@ -1,6 +1,6 @@
 [
   {
-    "har": "scenario.har",
+    "har": "localhost.har",
     "recorderWhiteList": "(.*)localhost(.+)",
     "simulationClassName": "SorterAppSimulation"
   }

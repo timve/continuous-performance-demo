@@ -1,21 +1,17 @@
 package nl.vaneijndhoven.testapp.sorter;
 
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
-import org.apache.commons.lang3.ArrayUtils;
-
-import java.util.Arrays;
 import java.util.List;
+
+import static nl.vaneijndhoven.testapp.util.ListUtils.toArray;
+import static nl.vaneijndhoven.testapp.util.ListUtils.toList;
 
 public interface Sorter {
 
-    Logger LOG = LoggerFactory.getLogger(Sorter.class);
-
     int[] sort(int[] input);
 
+    /** Convenience method for passing a List to sort(int[]). */
     default List<Integer> sort(List<Integer> input) {
-        // Go from List<Integer> to int[], sort, and back from int[] to List<Integer>...
-        return Arrays.asList(ArrayUtils.toObject(sort(ArrayUtils.toPrimitive(input.toArray(new Integer[0])))));
+        return toList(sort(toArray(input)));
     }
 
 }

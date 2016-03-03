@@ -1,8 +1,12 @@
 package nl.vaneijndhoven.testapp.sorter.impl;
 
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import nl.vaneijndhoven.testapp.sorter.Sorter;
 
 public class BubbleSorter implements Sorter {
+
+    private static final Logger LOG = LoggerFactory.getLogger(BubbleSorter.class);
 
     @Override
     public int[] sort(int[] num) {
