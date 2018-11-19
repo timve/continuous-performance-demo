@@ -6,7 +6,6 @@ import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.eventbus.Message;
 import io.vertx.rxjava.core.http.HttpServerRequest;
-import jodd.io.StreamUtil;
 import nl.vaneijndhoven.testapp.service.SorterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
