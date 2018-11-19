@@ -7,4 +7,4 @@ Run the HAR to Gatling dsl converter using:
 
 Run the scenario using:
 
-`mvn gatling:execute`
+`mvn gatling:test`

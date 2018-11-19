@@ -1,7 +1,5 @@
-[
-  {
-    "har": "localhost.har",
-    "recorderWhiteList": "(.*)localhost(.+)",
-    "simulationClassName": "SorterAppSimulation"
-  }
-]
+{
+  "har": "localhost.har",
+  "recorderWhiteList": "(.*)localhost(.+)",
+  "simulationClassName": "SorterAppSimulation"
+}
