@@ -21,8 +21,12 @@ class SorterAppSimulation extends Simulation {
 
 	val scn = scenario("SorterAppSimulation")
 		.exec(http("request_0")
+			.get("/")
+			.headers(headers_0))
+		.pause(1)
+		.exec(http("request_1")
 			.get("/?count=15000")
 			.headers(headers_0))
 
-	setUp(scn.inject(rampUsers(300) during (10 seconds))).protocols(httpProtocol)
+	setUp(scn.inject(rampUsers(300) during (5 seconds))).protocols(httpProtocol)
 }
