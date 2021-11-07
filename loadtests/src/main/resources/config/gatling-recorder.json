@@ -1,5 +1,0 @@
-{
-  "har": "localhost.har",
-  "recorderWhiteList": "(.*)localhost(.+)",
-  "simulationClassName": "SorterAppSimulation"
-}
