@@ -1,5 +1,7 @@
 package nl.jpoint.gatling
 
+import io.gatling.commons.shared.unstable.util.PathHelper.RichPath
+
 import java.nio.file.{Path, Paths}
 
 
